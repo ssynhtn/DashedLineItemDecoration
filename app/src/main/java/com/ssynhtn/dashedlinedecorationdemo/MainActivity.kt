@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ssynhtn.library.DashedLineItemDecoration
@@ -28,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             dp2px(this, 2f),
             dp2px(this, 20f),
             Color.GRAY, true))
+
+        val divider = DividerItemDecoration(this, RecyclerView.VERTICAL)
+        ContextCompat.getDrawable(this, R.drawable.list_divider_1dp)?.let { divider.setDrawable(it) }
+        recyclerView.addItemDecoration(divider)
 
     }
 
