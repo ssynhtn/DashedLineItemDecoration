@@ -75,22 +75,17 @@ public class DashedLineItemDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
 
-        switch (gravity) {
-            case Gravity.LEFT:
-                drawLeft(c, parent);
-                break;
-            case Gravity.RIGHT:
-                drawRight(c, parent);
-                break;
-            case Gravity.TOP:
-                drawTop(c, parent);
-                break;
-            case Gravity.BOTTOM:
-                drawBottom(c, parent);
-                break;
-            default:
-                Log.w(TAG, "gravity only supports left|start, right|end, top, bottom");
-                break;
+        int horizontalGravity = Gravity.HORIZONTAL_GRAVITY_MASK & gravity;
+        if (horizontalGravity == Gravity.LEFT) {
+            drawLeft(c, parent);
+        } else if (horizontalGravity == Gravity.RIGHT) {
+            drawRight(c, parent);
+        }
+        int verticalGravity = Gravity.VERTICAL_GRAVITY_MASK & gravity;
+        if (verticalGravity == Gravity.TOP) {
+            drawTop(c, parent);
+        } else if (verticalGravity == Gravity.BOTTOM) {
+            drawBottom(c, parent);
         }
     }
 
